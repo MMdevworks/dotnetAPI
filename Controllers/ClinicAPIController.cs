@@ -5,8 +5,10 @@ using dotnetAPI.Data;
 
 namespace dotnetAPI.Controllers
 {
-    [Route("api/[controller]")]
+
+    [Route("api/[controller]/[action]")]
     [ApiController]
+
     public class ClinicAPIController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -16,7 +18,28 @@ namespace dotnetAPI.Controllers
             _context = context;
         }
 
-        //Create/Edit
+        // Get
+        [HttpGet]
+        public JsonResult Get(int id)
+        {
+            var result = _context.Rooms.Find(id);
+
+            if (result == null) 
+                return new JsonResult(NotFound());
+
+            return new JsonResult(Ok(result));
+        }
+
+        // Get all
+        [HttpGet()]
+        public JsonResult GetAll()
+        {
+            var result = _context.Rooms.ToList();
+
+            return new JsonResult(Ok(result));
+        }
+
+        // Create/Update
         [HttpPost]
         public JsonResult CreateEdit(CareRoom room)
         {
@@ -36,6 +59,21 @@ namespace dotnetAPI.Controllers
             _context.SaveChanges();
 
             return new JsonResult(Ok(room));
+        }
+
+        // Delete
+        [HttpDelete]
+        public JsonResult Delete(int id)
+        {
+            var result = _context.Rooms.Find(id);
+
+            if (result == null)
+                return new JsonResult(NotFound());
+
+            _context.Rooms.Remove(result);
+            _context.SaveChanges();
+
+            return new JsonResult(NoContent());
         }
     }
 }
