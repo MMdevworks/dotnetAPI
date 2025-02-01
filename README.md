@@ -1,3 +1,4 @@
+<a id="readme-top"></a>
 ## About The Project
 
 This is a simple .NET Web API project demonstrating the use of HTTP methods (GET, POST, PUT, DELETE) to interact with API endpoints. Swagger is integrated for interactive API documentation and testing. 
@@ -10,12 +11,11 @@ This is a simple .NET Web API project demonstrating the use of HTTP methods (GET
  [![Dotnet][dotnet-badge]][Dotnet-url]
 
 
-<!-- GETTING STARTED -->
 ## Getting Started
 
 ### Installation
 1. Clone the repo
-   ```sh
+   ```
    > git clone https://github.com/MMdevworks/dotnetAPI.git
    > cd dotnetApi
    ```
